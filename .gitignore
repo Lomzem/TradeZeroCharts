@@ -1,2 +1,6 @@
 TradeHistory*.csv
 lomzem_env.py
+*.ipynb
+*.parquet
+*.pyc
+__pycache__/
