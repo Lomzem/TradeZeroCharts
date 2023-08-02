@@ -16,6 +16,16 @@ def add_gray_area(fig, x_start, x_end, y_low, y_high):
     )
 
 
+def add_trade_triangle(fig, time, price, bull_color, bear_color):
+    fig.add_trace(go.Scatter(
+        mode='markers',
+        x=['10:30'],
+        y=[4.0],
+        marker_symbol='triangle-down',
+        marker_size=15
+    ))
+
+
 def make_chart(df: pd.DataFrame, increasing_color='#26A69A', decreasing_color='#EF5350', bg_color='#131722') -> None:
     fig = go.Figure(data=[
         go.Candlestick(
@@ -52,6 +62,9 @@ def make_chart(df: pd.DataFrame, increasing_color='#26A69A', decreasing_color='#
     add_gray_area(fig, x_start='16:00', x_end=final_candle,
                   y_low=y_low, y_high=y_high)
 
-    fig.add_trace_
+    add_trade_triangle(fig, '10:30', 4.0, increasing_color, decreasing_color)
 
     fig.show()
+
+
+make_chart(pd.read_parquet('./test_parquet.parquet'))
