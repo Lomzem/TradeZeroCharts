@@ -26,7 +26,7 @@ def add_trade_triangle(fig: go.Figure, time: str, price: float, bull_color: str 
     ))
 
 
-def make_chart(df: pd.DataFrame, increasing_color='#26A69A', decreasing_color='#EF5350', bg_color='#131722') -> None:
+def make_chart(df: pd.DataFrame, transactions_df: pd.DataFrame = None, increasing_color: str = '#26A69A', decreasing_color = '#EF5350', bg_color = '#131722') -> None:
     fig = go.Figure(data=[
         go.Candlestick(
             x=df.timestamp.dt.strftime('%H:%M'),
@@ -62,7 +62,9 @@ def make_chart(df: pd.DataFrame, increasing_color='#26A69A', decreasing_color='#
     add_gray_area(fig, x_start='16:00', x_end=final_candle,
                   y_low=y_low, y_high=y_high)
 
-    add_trade_triangle(fig, '10:30', 4.0, increasing_color, decreasing_color)
+    if transactions_df is not None:
+        for ticker in transactions_df
+        add_trade_triangle(fig, '10:30', 4.0, increasing_color, decreasing_color)
 
     fig.show()
 
