@@ -16,11 +16,11 @@ def add_gray_area(fig, x_start, x_end, y_low, y_high):
     )
 
 
-def add_trade_triangle(fig, time, price, bull_color, bear_color):
+def add_trade_triangle(fig: go.Figure, time: str, price: float, bull_color: str = '#26A69A', bear_color: str = '#EF5350'):
     fig.add_trace(go.Scatter(
         mode='markers',
-        x=['10:30'],
-        y=[4.0],
+        x=[time],
+        y=[price],
         marker_symbol='triangle-down',
         marker_size=15
     ))
